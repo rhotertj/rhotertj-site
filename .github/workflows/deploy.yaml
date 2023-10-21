@@ -23,7 +23,7 @@ jobs:
             clean: true
             submodules: recursive
     
-      - name: Download Hugo v${{ env.HUGO_VERSION }} Linux x64
+      - name: Download Hugo
         run: "wget https://github.com/gohugoio/hugo/releases/download/v${{ env.HUGO_VERSION }}/hugo_${{ env.HUGO_VERSION }}_linux-amd64.deb -O hugo_${{ env.HUGO_VERSION }}_Linux-64bit.deb"
 
       - name: Install Hugo
@@ -39,7 +39,7 @@ jobs:
           known_hosts: unnecessary
 
       - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.DEPLOY_SSH_TARGET }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan -H ${{ secrets.DEPLOY_SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
         run: rsync -avz ./public/ ${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}:${{ secrets.DEPLOY_PATH }}""
