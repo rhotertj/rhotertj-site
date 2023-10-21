@@ -1,7 +1,7 @@
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "rhotertj"
+title = "Jim Rhotert"
 
 [params]
   displayName = "EN"
@@ -11,7 +11,7 @@ title = "rhotertj"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  copyright = "© 2023 Jim Rhotert, Art by [Alena Aenami](https://www.artstation.com/aenamiart)"
 
 [author]
   name = "Jim Rhotert"
