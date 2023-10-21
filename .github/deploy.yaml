@@ -1,0 +1,46 @@
+# Github Action to build website with Hugo and Deploy via rsync/ssh
+
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - main
+      - master
+
+env:
+  HUGO_VERSION: 0.119.0
+
+jobs:
+  build-and-deploy:
+    if: "!contains(github.event.head_commit.message,'[skip-ci]')"
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+            clean: true
+            submodules: recursive
+    
+      - name: Download Hugo v${{ env.HUGO_VERSION }} Linux x64
+        run: "wget https://github.com/gohugoio/hugo/releases/download/v${{ env.HUGO_VERSION }}
+        /hugo_${{ env.HUGO_VERSION }}_Linux-64bit.deb -O hugo_${{ env.HUGO_VERSION }}_Linux-64bit.deb"
+
+      - name: Install Hugo
+        run: sudo dpkg -i hugo*.deb
+
+      - name: Build site with Hugo
+        run: hugo --minify
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          known_hosts: unnecessary
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.DEPLOY_SSH_TARGET }} >> ~/.ssh/known_hosts
+
+      - name: Deploy with rsync
+        run: rsync -avz -e "ssh -p ${{ secrets.DEPLOY_SSH_PORT }}" ./public/ ${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}:${{ secrets.DEPLOY_PATH }}
