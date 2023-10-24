@@ -1,7 +1,7 @@
 +++
 title = 'Automatic deployment with Github Actions'
 date = 2023-10-22T15:29:19+02:00
-draft = true
+draft = false
 +++
 
 After my SD card died, I started organizing my blog on Github. Since I use Hugo to build this static site,
