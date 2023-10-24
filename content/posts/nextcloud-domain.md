@@ -1,5 +1,5 @@
 ---
-title: "Changing the domain of your (docker) nextcloud instance."
+title: "Changing the domain of your dockerized Nextcloud instance."
 date: 2022-08-01T17:30:40+02:00
 draft: false
 ---
