@@ -10,7 +10,7 @@ title = "Jim Rhotert"
   dateFormat = "2 January 2006"
   # logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
-  # description = "My awesome website"
+  description = "My personal blog."
   copyright = "© 2023 Jim Rhotert, Art by [Alena Aenami](https://www.artstation.com/aenamiart)"
 
 [author]
