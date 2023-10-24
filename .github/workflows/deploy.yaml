@@ -35,7 +35,7 @@ jobs:
       - name: Install SSH Key
         run: |
           mkdir -p ~/.ssh/
-          echo ${{ secrets.DEPLOY_SSH_KEY }} > ~/.ssh/private.key
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/private.key
           sudo chmod 600 ~/.ssh/private.key
 
       - name: Adding Known Hosts
